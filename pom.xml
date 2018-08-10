@@ -12,7 +12,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.marco</groupId>
-    <artifactId>spring-clound-test</artifactId>
+    <artifactId>spring-cloud-test</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -20,6 +20,9 @@
         <module>ribbon-consumer</module>
         <module>turbine</module>
         <module>feign-consumer</module>
+        <module>api-gateway</module>
+        <module>api-gateway-dynamic-router</module>
+        <module>config-server</module>
     </modules>
 
     <properties>

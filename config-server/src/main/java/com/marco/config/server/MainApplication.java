@@ -1,17 +1,16 @@
-package com.marco.feign.consumer;
+package com.marco.config.server;
 
-import feign.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * Created by landun on 2018/8/9.
+ * Created by landun on 2018/8/10.
  */
+
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableConfigServer
 @SpringBootApplication
 public class MainApplication {
 
