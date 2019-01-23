@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="PID">????</Property>
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+        <Property name="CONSOLE_LOG_PATTERN">%clr{%d{${LOG_DATEFORMAT_PATTERN}}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+        <Property name="FILE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} ${sys:PID} --- [%t] %-40.40c{1.} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+        <Property name="LOG_ROOT_PATH">/apps/logs/idt-banana-mjn-serv-scheduler</Property>
+        <!--<Property name="LOG_ROOT_PATH">/Users/shankskk/Desktop/idt-banana-app-mobile</Property>-->
+    </Properties>
+    <Appenders>
+        <RollingRandomAccessFile name="File" fileName="${sys:LOG_ROOT_PATH}/application.log"
+                                 filePattern="${sys:LOG_ROOT_PATH}/$${date:yyyy-MM}/application-%d{yyyy-MM-dd-HH}-%i.log.gz">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <Kafka name="banana_finish_report_appender" topic="banana_finish_report">
+            <PatternLayout pattern="%message"/>
+            <!--<Property name="bootstrap.servers">kafka.imagedt.com:9092</Property>-->
+            <!--<Property name="bootstrap.servers"> 192.168.154.129:9092,192.168.154.129:9093,192.168.154.129:9094,192.168.154.129:9095</Property>-->
+            <Property name="bootstrap.servers"> 192.168.154.129:9092</Property>
+            <!--<Property name="brokerList"> 192.168.154.129:9092,192.168.154.129:9093,192.168.154.129:9094,192.168.154.129:9095</Property>-->
+            <!--<Property name="brokerList">192.168.29.153:9092,192.168.29.154:9092,192.168.29.155:9092</Property>-->
+        </Kafka>
+
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="File"/>
+        </Root>
+        <AsyncLogger name="banana_finish_report" level="info" includeLocation="true">
+            <AppenderRef ref="banana_finish_report_appender"/>
+        </AsyncLogger>
+    </Loggers>
+</Configuration>
