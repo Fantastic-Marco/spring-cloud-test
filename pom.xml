@@ -23,6 +23,8 @@
         <module>api-gateway</module>
         <module>api-gateway-dynamic-router</module>
         <module>config-server</module>
+        <module>common-logger</module>
+        <module>message-bus</module>
     </modules>
 
     <properties>
@@ -31,6 +33,7 @@
         <hystrix-version>1.2.7.RELEASE</hystrix-version>
         <turbine-version>1.2.7.RELEASE</turbine-version>
         <feign-version>1.2.7.RELEASE</feign-version>
+        <sleuth-version>2.0.2.RELEASE</sleuth-version>
     </properties>
 
     <dependencies>

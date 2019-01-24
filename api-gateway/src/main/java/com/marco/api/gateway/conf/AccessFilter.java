@@ -1,5 +1,6 @@
 package com.marco.api.gateway.conf;
 
+import com.marco.api.gateway.constant.ZuulFilterType;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
@@ -17,11 +18,15 @@ public class AccessFilter extends ZuulFilter {
 
     /**
      * 过滤器请求类型，决定了该过滤器在请求的哪个生命周期执行
+     * pre 请求路由之前被调用
+     * routing 在路由请求时被调用
+     * post 在routing和error之后被调用
+     * error 在请求发生错误时被调用
      * @return
      */
     @Override
     public String filterType() {
-        return "pre";
+        return ZuulFilterType.PRE.getValue();
     }
 
     /**
@@ -36,6 +41,8 @@ public class AccessFilter extends ZuulFilter {
 
     /**
      * 判断该过滤器是否应该被执行
+     * 我们可以用过该方法来指定过滤器的有效范围
+     * 根据业务需要来决定要不要使用该过滤器
      * @return
      */
     @Override
