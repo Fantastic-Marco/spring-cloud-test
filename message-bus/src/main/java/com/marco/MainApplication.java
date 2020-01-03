@@ -14,6 +14,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
 
@@ -28,22 +29,23 @@ import javax.annotation.PostConstruct;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
+@EnableScheduling
 public class MainApplication {
 
-    @Autowired
-    private KafkaSender kafkaSender;
+//    @Autowired
+//    private KafkaSender kafkaSender;
 
     @PostConstruct
-    public void init(){
-        for (int i = 0; i < 10; i++) {
-            //调用消息发送类中的消息发送方法
-            kafkaSender.send("banana_finish_report","hello -> " + i);
-        }
-    }
+//    public void init(){
+//        for (int i = 0; i < 10; i++) {
+//            //调用消息发送类中的消息发送方法
+//            kafkaSender.send("banana_finish_report","hello -> " + i);
+//        }
+//    }
 
     public static void main(String[] args) {
-        SpringApplication.run(MainApplication.class, args);
+        SpringApplication.run(MainApplication.class,args);
     }
 
 }
